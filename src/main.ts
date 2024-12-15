@@ -5,7 +5,7 @@ import started from 'electron-squirrel-startup'
 import 'dotenv/config'
 import { startServer } from './server'
 import { URLSearchParams } from 'url'
-import { OAuthToken } from './types/token'
+import { OAuthToken } from './types/oauth'
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (started) {
@@ -62,6 +62,8 @@ async function loadTokens(uri: string): Promise<OAuthToken> {
 }
 
 async function handleLogin(win: BrowserWindow, callbackUrl: string, {apiUrl} : {apiUrl: string}) {
+  win.hide()
+
   let token: OAuthToken
 
   try {
@@ -83,14 +85,23 @@ async function handleLogin(win: BrowserWindow, callbackUrl: string, {apiUrl} : {
     params.append('apiUrl', apiUrl)
     win.loadFile(path.join(__dirname, `../renderer/${MAIN_WINDOW_VITE_NAME}/index.html?${params}`))
   }
+
+  win.setSize(1200, 800)
+  win.center()
+  win.show()
 }
 
 async function handleLogout(win: BrowserWindow, url: string) {
+  win.hide()
+
   await session.defaultSession.clearStorageData({
     storages: ['cookies'],
   })
 
   win.loadURL(getAuthenticationUrl())
+  win.setSize(440, 790)
+  win.center()
+  win.show()
 }
 
 const createWindow = async () => {
@@ -98,14 +109,18 @@ const createWindow = async () => {
   const apiUrl = `http://localhost:${port}`
 
   const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 440,
+    height: 790,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
     },
+    show: false,
   })
 
   mainWindow.loadURL(getAuthenticationUrl())
+  mainWindow.once('ready-to-show', () => {
+    mainWindow.show()
+  })
 
   const {session: {webRequest}} = mainWindow.webContents
 

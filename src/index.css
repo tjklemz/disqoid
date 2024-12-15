@@ -17,8 +17,6 @@
     --color-background: var(--color-light);
     --color-foreground: white;
     --color-text: var(--color-dark);
-
-    font-family: Lekton, monospace;
 }
 
 :global(.dark) {
@@ -32,7 +30,7 @@ html, body {
     height: 100%;
     background: var(--color-background);
     color: var(--color-text);
-    font-family: Lekton, monospace;
+    font-family: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
 }
 
 a:link, a:visited {

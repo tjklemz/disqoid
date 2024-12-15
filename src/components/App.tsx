@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Profile } from '../types/api';
-import { api } from '../api';
+import { api } from '../lib/api';
 import { Header } from './Header'
+import { TextArea } from './TextArea';
 import { Footer } from './Footer';
 
 import styles from './App.module.css'
@@ -17,7 +18,7 @@ function App() {
     return (
         <div className={styles.container}>
             <Header name={profile?.name} avatar={profile?.avatarUrl} />
-            <h1>Welcome to Disqoid</h1>
+            <TextArea />
             <Footer></Footer>
         </div>
     )

@@ -1,4 +1,4 @@
-import { ProfileResponse } from "./types/api";
+import { ProfileResponse } from "../types/api";
 
 const params = new URLSearchParams(window.location.search)
 

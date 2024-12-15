@@ -1,0 +1,51 @@
+.container {
+    margin: 2em auto;
+    border-radius: 2px;
+    max-width: 520px;
+    max-height: 200px;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    --shadow-color: color-mix(in oklab, var(--color-mid) 30%, white);
+    box-shadow: 3px 3px 9px 0px var(--shadow-color);
+    transition: 0.66s box-shadow cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.container,
+.textarea {
+    background: var(--color-foreground);
+}
+
+.textarea {
+    resize: none;
+    width: 100%;
+    max-width: 100%;
+    padding: 0.66em;
+    font-size: var(--step-0);
+    border: none;
+    border-radius: 2px;
+    outline: none;
+}
+
+.container:hover {
+    box-shadow: 3px 3px 9px 2px var(--shadow-color);
+}
+
+.container:has(.textarea:focus) {
+    box-shadow: 3px 5px 10px 4px var(--shadow-color);
+}
+
+.container:has(.textarea:active) {
+    box-shadow: 3px 6px 12px 7px var(--shadow-color);
+}
+
+.statusbar {
+    border-top: 1px solid color-mix(in oklab, var(--color-mid) 6%, white);
+    color: color-mix(in oklab, var(--color-text) 60%, white);
+    padding: 0.25em 0.5em;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.statusbar p {
+    font-size: var(--step--2);
+}
