@@ -1,0 +1,33 @@
+.container {
+    --grid-layout-gap: 1em;
+    --grid-column-count: 4;
+    --grid-item--min-width: 280px;
+
+    --gap-count: calc(var(--grid-column-count) - 1);
+    --total-gap-width: calc(var(--gap-count) * var(--grid-layout-gap));
+    --grid-item--max-width: calc((100% - var(--total-gap-width)) / var(--grid-column-count));
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(max(var(--grid-item--min-width), var(--grid-item--max-width)), 1fr));
+    grid-gap: var(--grid-layout-gap);
+    grid-auto-flow: dense;
+
+    margin: 3em;
+}
+
+.container:has(> p) {
+    display: block;
+}
+
+.container iframe {
+    border: none;
+    margin: 0 auto;
+    display: block;
+}
+
+.container > p {
+    margin: 0 auto;
+    text-align: center;
+    font-size: var(--step-0);
+    color: color-mix(in oklab, var(--color-text) 70%, white);
+}

@@ -13,3 +13,12 @@ export type Profile = {
 export type ProfileResponse = {
     profile: Profile;
 } | ErrorResponse;
+
+export type Comment = {
+    id: string;
+    message: string;
+}
+
+export type CommentsResponse = {
+    comments: Comment[];
+} | ErrorResponse;

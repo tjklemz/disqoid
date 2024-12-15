@@ -1,4 +1,4 @@
-import { Profile, ProfileResponse } from './types/api'
+import { CommentsResponse, Profile, ProfileResponse } from './types/api'
 
 import express from 'express';
 import cors from 'cors';
@@ -25,10 +25,20 @@ async function startServer() {
         })
     })
 
+    app.get('/comments', async (req, res) => {
+        const url = new URL('https://disqus.com/api/3.0/posts/list.json')
+        url.searchParams.append('api_key', credentials.key)
+
+        const data = await fetch(url).then(r => r.json())
+        const commentsResponse: CommentsResponse = {
+            comments: data.response,
+        }
+        res.json(commentsResponse)
+    })
+
     app.get('/profile', async (req, res) => {
         const url = new URL('https://disqus.com/api/3.0/users/details.json')
         url.searchParams.append('api_key', credentials.key)
-        url.searchParams.append('api_secret', credentials.secret)
 
         const token = req.query.token
         if (typeof token === 'string') {

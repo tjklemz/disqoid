@@ -72,8 +72,6 @@ async function handleLogin(win: BrowserWindow, callbackUrl: string, {apiUrl} : {
     throw new Error('Could not get API token')
   }
   
-  console.log('got token?', token)
-  
   if (MAIN_WINDOW_VITE_DEV_SERVER_URL) {
     const url = new URL(MAIN_WINDOW_VITE_DEV_SERVER_URL)
     url.searchParams.append('token', token.access_token)

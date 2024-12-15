@@ -43,9 +43,16 @@
     color: color-mix(in oklab, var(--color-text) 60%, white);
     padding: 0.25em 0.5em;
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
+.statusbar button,
 .statusbar p {
     font-size: var(--step--2);
+}
+
+.statusbar span {
+    font-weight: 700;
 }
