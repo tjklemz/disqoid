@@ -1,10 +1,10 @@
 import { CommentsResponse, ProfileResponse } from "../types/api";
 
-const params = new URLSearchParams(window.location.search)
+const params = new URLSearchParams(globalThis.location?.search || '')
 
 const config = {
-    token: params.get('token'),
-    apiUrl: params.get('apiUrl'),
+    token: params.get('token') || '',
+    apiUrl: params.get('apiUrl') || 'http://localhost',
 }
 
 const api = {

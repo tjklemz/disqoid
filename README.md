@@ -30,9 +30,18 @@ Importantly, the types are layered so that each layer of the architecture could 
 
 frontend :: api lib :: api server :: disqus api
 
+## Tests
+
+The tests use the new [Vitest](https://vitest.dev/) tool.
+
+Run them with:
+```bash
+npm run test
+```
+
 ## TODO
 
-- [ ] unit tests, probably with [Ava](https://github.com/avajs/ava) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
+- [ ] React tests with [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
 - [ ] maybe [Storybook](https://storybook.js.org/) which is how I like to test and develop UI libraries
 - [ ] do something interesting with the Disqus API instead of fetching random posts
 

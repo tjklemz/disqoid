@@ -18,21 +18,21 @@ function App() {
         })
     }, [])
 
-    const handleChange = useCallback((newWordCount: number) => {
-        if (newWordCount > 0 && newWordCount % 10 === 0) {
-            api.findComments().then(res => {
-                setComments(res)
-            })
-        } else if (newWordCount === 0) {
-            setComments([])
-        }
+    const handleReset = useCallback(() => {
+        setComments([])
+    }, [])
+
+    const handleTrigger = useCallback(() => {
+        api.findComments().then(res => {
+            setComments(res)
+        })
     }, [])
 
     return (
         <div className={styles.container}>
             <Header name={profile?.name} avatar={profile?.avatarUrl} />
             <div>
-                <TextArea onWordCountChange={handleChange} />
+                <TextArea onTrigger={handleTrigger} onReset={handleReset} />
                 <CommentList comments={comments} />
             </div>
             <Footer></Footer>
